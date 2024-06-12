@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <nav>
+        <div class="div_logo">
+            <img src="./image/akk.png" alt="">
+        </div>
+        <div class="div_ul">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Directory</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </div>
+        <div class="div_span">
+            <span>&#9776;</span>
+        </div>
+    </nav> 
+     <section>
+        <div class="hero_div">
+            <img src="./image/it.jpg" alt="">
+        </div>
+    </section> 
+    <article>
+        <div class="form_div">
+            <h1>Registration Form</h1><hr>
+            <form action="" id="form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+                <label for="mobile">Mobile:</label>
+                <input type="text" id="mobile" name="mobile" placeholder="Enter Your Mobile" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+                <label for="course">Course:</label>
+                <select id="course" name="course" >
+                    <option value="">-------Select-----------</option>
+                    <option value="BBA">BBA</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BTech">BTech</option>
+                    <option value="MTech">MTech</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MCA">MCA</option>
+                </select>
+                <button id="btn">Submit</button>
+            </form>
+        </div>
+        <div id="table_div">
+            <h2>Student Details</h2> <hr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+    </article>
+    <footer>
+        <div class="footer_I">
+            <img src="./image/akk.png" alt="">
+          <p>Copyright © 2024. All Rights Reserved.</p>  
+        </div>
+        <div class="footer_II">
+      <h3>Contact <span>&#128073;</span>
+      </h3>
+      <p><span>&#9742;</span> :- 0141-2456321</p>
+      <p><span>&#9993;</span> :- info.ak@gmail.com</p>
+      <p><span>&#9765;</span>:- C-Scheme, Jaipur, Rajasthan</p>
+
+        </div>
+        <div class="footer_III">
+            <h3>Follow Here
+                <span>&#128073;</span>
+            </h3>
+            <div class="i_div">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-snapchat"></i>
+        </div></div>
+   
+    
+    </footer>
+</body>
+<script>
+    let arr= JSON.parse(localStorage.getItem("abc")) || []
+    let form= document.getElementById("form")
+    let table_div= document.getElementById("table_div")
+    let tbody= document.getElementById("tbody")
+    let btn= document.getElementById("btn")
+    btn.addEventListener("click", getValue)
+    
+    function getValue(e){
+        e.preventDefault()
+        let obj={
+            name: document.getElementById("name").value,
+            mobile: document.getElementById("mobile").value,
+            email: document.getElementById("email").value,
+            course: document.getElementById("course").value
+            }
+            arr.push(obj)
+            localStorage.setItem("abc", JSON.stringify(arr))
+            displayData(arr)
+            form.reset()
+            }
+            function displayData(xyz){
+            tbody.innerHTML=""
+        xyz.map((item, index)=>{
+            let tr= document.createElement("tr")
+            let td=document.createElement("td")
+            td.innerText=index+1
+            let td1= document.createElement("td")
+            td1.innerText=item.name
+            let td2= document.createElement("td")
+            td2.innerText=item.mobile
+            let td3= document.createElement("td")
+            td3.innerText=item.email
+            let td4= document.createElement("td")
+            td4.innerText=item.course
+            tr.append(td,td1,td2,td3,td4)
+            tbody.append(tr)
+            });
+            }
+        displayData(arr)
+</script>
+</html>
